@@ -1,8 +1,8 @@
 ---
 author: "Nicola F. Müller,Tim Vaughan"
-beastversion: 2.4.2
-tracerversion: 1.6.0
-figtreeversion: 1.4.2
+beastversion: 2.7.7
+tracerversion: 1.7.3
+figtreeversion: 1.4.5
 level: Professional
 subtitle: Population structure using MultiTypeTree
 title: Structured coalescent
