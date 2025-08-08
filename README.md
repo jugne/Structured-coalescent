@@ -1,8 +1,8 @@
 ---
 author: "Nicola F. Müller,Tim Vaughan"
-beastversion: 2.4.2
-tracerversion: 1.6.0
-figtreeversion: 1.4.2
+beastversion: 2.7.x
+tracerversion: 1.7.3
+figtreeversion: 1.4.x
 level: Professional
 subtitle: Population structure using MultiTypeTree
 title: Structured coalescent
@@ -91,7 +91,7 @@ The packages MultiTypeTree is not implemented in the core of BEAST, but has to b
 
 <figure>
 	<a id="fig:install_mtt"></a>
-	<img style="width:50.0%;" src="figures/install_mtt.png" alt="">
+	<img src="figures/install_mtt.png" alt="">
 	<figcaption>Figure 1: Install MultiTypeTree.</figcaption>
 </figure>
 <br>
@@ -205,7 +205,7 @@ Next, we can have a look at the estimates of the effective population sizes (Fig
 
 <figure>
 	<a id="fig:estimated_peff"></a>
-	<img style="width:60.0%;" src="figures/effectivePsize_tracer.png" alt="">
+	<img src="figures/effectivePsize_tracer.png" alt="">
 	<figcaption>Figure 6: Estimated effective population sizes.</figcaption>
 </figure>
 <br>
@@ -216,7 +216,7 @@ Hong Kong ({% eqinline \sim %}7 Mio Inhabitants) is inferred to have the larger 
 
 <figure>
 	<a id="fig:etimated_mig"></a>
-	<img style="width:60.0%;" src="figures/migrationrates_tracer.png" alt="">
+	<img src="figures/migrationrates_tracer.png" alt="">
 	<figcaption>Figure 7: Estimated migration rates.</figcaption>
 </figure>
 <br>
@@ -240,7 +240,7 @@ MultiTypeTree logs 3 different tree files:
 
 <figure>
 	<a id="fig:single_child"></a>
-	<img  src="figures/single_child.pdf" alt="">
+	<img  src="figures/single_child.png" alt="">
 	<figcaption>Figure 8: An example of a tree where the migration events are logged as single child nodes (left) and of the same tree where only the location of a coalescent event is logged (right).</figcaption>
 </figure>
 <br>
