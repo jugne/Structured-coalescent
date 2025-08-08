@@ -1,8 +1,8 @@
 ---
 author: "Nicola F. Müller,Tim Vaughan"
-beastversion: 2.7.7
-tracerversion: 1.7.3
-figtreeversion: 1.4.5
+beastversion: 2.4.2
+tracerversion: 1.6.0
+figtreeversion: 1.4.2
 level: Professional
 subtitle: Population structure using MultiTypeTree
 title: Structured coalescent
@@ -81,7 +81,13 @@ We will use BEAUti to generate the input XML for BEAST2 from the sequence alignm
 
 ### Install BEAST 2 Plug-Ins
 
-The packages MultiTypeTree is not implemented in the core of BEAST, but has to be installed (Figure [1](#fig:install_mtt)). 
+The packages MultiTypeTree is not implemented in the core of BEAST, but has to be installed. 
+
+> Launch **BEAUTi**
+> At the top menu, select **File > Manage** packages.
+> Select MultiTypeTree in the package list.
+> Select **INstall/Upgrade** from the botom menu Figure [1](#fig:install_mtt).
+> Restart BEAUTi
 
 <figure>
 	<a id="fig:install_mtt"></a>
@@ -91,9 +97,25 @@ The packages MultiTypeTree is not implemented in the core of BEAST, but has to b
 <br>
 
 
-To be able to make `.xml`'s for MultiTypeTree, we have to load the MultiTypeTree template `File > Template > MultiTypeTree`. This template allows to specify additional things, such as sampling location, which one can not specify using the standard interface, as well as parameters such as the migration rates.
-After setting the template, we can load the alignment of the H3N2 data `File > Add Alignment`.
-Since the sequences were sampled through time, we have to specify the sampling dates. These are included in the sequence names. To set the sampling dates, first go to **Tip Dates** and check **Use tip dates** box. Then select **Auto-configure** and use everything after last "_". There are two different ways in how BEAST can interpret sampling dates. They are labeled as **Since some time in the past** and **Before the present**. The easiest way to check if you have used the correct one is by checking `Height`. If the setup is correct, the sequences sampled the most recently (i.e. 2005.66) should have a Height of 0 while all other tips should be larger then 0 (Figure [2](#fig:sampling_dates)).
+To be able to make `.xml`'s for MultiTypeTree, we have to load the MultiTypeTree template.
+
+> At the top menu in BEAUTi select **File > Template > MultiTypeTree**.
+
+This template allows to specify additional things, such as sampling location, which one can not specify using the standard interface, as well as parameters such as the migration rates.
+After setting the template, we can load the alignment of the H3N2 data.
+
+> At the top menu in BEAUti select **File > Add Alignment**.
+> Navigate to the location where you have saved the file **h3n2_2deme.fna**.
+> Select the file and click **OK**.
+
+Since the sequences were sampled through time, we have to specify the sampling dates. These are included in the sequence names. 
+
+> Switch to **Tip Dates** tab.
+> Check the **Use tip dates** checkbox.
+> Click **Auto-configure**.
+> Select **use everything > after last** and leave symbol as **"_"**.
+
+There are two different ways in how BEAST can interpret sampling dates. They are labeled as **Since some time in the past** and **Before the present**. The easiest way to check if you have used the correct one is by checking `Height`. If the setup is correct, the sequences sampled the most recently (i.e. 2005.66) should have a Height of 0 while all other tips should be larger then 0 (Figure [2](#fig:sampling_dates)).
 
 <figure>
 	<a id="fig:sampling_dates"></a>
@@ -103,7 +125,13 @@ Since the sequences were sampled through time, we have to specify the sampling d
 <br>
 
 
-The main contrast in the setup to previous analyses is that we include additional information about the sampling location of sequences. Sequences were taken from patients in Hong Kong and New Zealand. We can specify these sampling locations by going to **Tip Locations** in BEAUti and guessing the locations. Use here the second group after splitting the names on the character "_". After guessing the tip locations, the column **Location** should contain the entries Hong Kong and New Zealand (Figure [3](#fig:sampling_locations)).
+Since out population structure is defined geographically, we include additional information about the sampling location of sequences. Sequences were taken from patients in Hong Kong and New Zealand. We can specify these sampling locations:
+
+> Switch to **Tip Locations** tab in BEAUti
+> Select **Guess** 
+> Select **split on character", leave the character as "_" and take group 2
+
+After guessing the tip locations, the column **Location** should contain the entries Hong Kong and New Zealand (Figure [3](#fig:sampling_locations)).
 
 <figure>
 	<a id="fig:sampling_locations"></a>
@@ -115,7 +143,12 @@ The main contrast in the setup to previous analyses is that we include additiona
 
 For this analysis, we will be using the HKY model. The HKY model infers different rates for transversion and transition. Transition being the change within purines (**A** and **G**) and pyrimidines (**T** and **C**) and transversion being the change among those groups. 
 
-We also want to allow for heterogeneity between sites, which we can do by setting the **Gamma Category Count** to a value greater than 0 (normally between 4 and 6) and ticking the **estimate** box for the shape parameter (Figure [4](#fig:hky)). 
+We also want to allow for heterogeneity between sites, which we can do by setting the **Gamma Category Count** to a value greater than 0 (normally between 4 and 6) and estimating the shape parameter (Figure [4](#fig:hky)). 
+
+> Switch to **Site Model** tab in BEAUTi.
+> Set **Gamma Category Count** to 4, leave **Shape** as 1.0 and **estimate** checkbox selected.
+> Select **HKY** as **Subst Model**, make sure **estimate** checkbox is selected.
+
 
 <figure>
 	<a id="fig:hky"></a>
@@ -128,11 +161,17 @@ We also want to allow for heterogeneity between sites, which we can do by settin
 
 To speed up convergence, we leave the branch model on the Strict Clock model and  set a different value for the clock rate (default is 1). A value of 0.005 substitutions * site^(-1) * year^(-1)  is closer to the truth.
 
+> Switch to **Clock Model** tab in BEAUTi
+> set value as 0.005
+
 
 Since we have more than one deme (Hong Kong and New Zealand), we can estimate the effective population size of those two demes separately. Additionally, these demes are connected, so we can (or need to) allow for migration between them.
-By default, the migration rates and population sizes are not estimated. To change this, we have to go to the Priors setting. There, we have to check the two **estimate** boxes for the population sizes and the migration rates. 
+By default, the migration rates and population sizes are not estimated, we will change this.
 
- 
+> Switch to **Priors** tab in BEAUTi
+> Expand **structuredCoalescent** line.
+> Check the two boxes for the **estimate pop. sizes** and **estimate mig. rates**. 
+> Now two more parameter priors appear. For **rateMatrix** select **Exponential** prior.
 
 
 After checking those two boxes, there will be two new fields appearing, where we can set the priors for the population sizes and the migration rates. 
@@ -149,7 +188,10 @@ Figure [5](#fig:est_migrates) shows the final setup for the priors.
 
 
 
-The rest of the settings we can leave as they are.
+The rest of the settings we can leave as they are. Save your XML in order to run in BEAST2.
+
+> In BEAUTi top menu, select **File > save** and choose your preferred location.
+> Launch BEAST2 and use the saved XML to start the run.
 
 After saving, we get an `*.xml`, which we can use in BEAST2. The run will take a bit of time. If the MultiTypeTree run consumes too much CPU power, you can just close it and then use the "pre-cooked" `*.log` and `*.trees` files later instead.
 
@@ -198,7 +240,7 @@ MultiTypeTree logs 3 different tree files:
 
 <figure>
 	<a id="fig:single_child"></a>
-	<img  src="figures/single_child.png" alt="">
+	<img  src="figures/single_child.pdf" alt="">
 	<figcaption>Figure 8: An example of a tree where the migration events are logged as single child nodes (left) and of the same tree where only the location of a coalescent event is logged (right).</figcaption>
 </figure>
 <br>
