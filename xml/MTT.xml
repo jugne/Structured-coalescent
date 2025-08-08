@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><beast beautitemplate='MultiTypeTree' beautistatus='' namespace="beast.core:beast.evolution.alignment:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc:beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel:beast.base.evolution.alignment:beast.pkgmgmt:beast.base.core:beast.base.inference:beast.base.evolution.tree.coalescent:beast.pkgmgmt:beast.base.core:beast.base.inference.util:beast.evolution.nuc:beast.base.evolution.operator:beast.base.inference.operator:beast.base.evolution.sitemodel:beast.base.evolution.substitutionmodel:beast.base.evolution.likelihood" required="BEAST.base v2.7.7:MultiTypeTree v8.2.0" version="2.7">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><beast beautitemplate='MultiTypeTree' beautistatus='' namespace="beast.core:beast.evolution.alignment:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc:beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel:beast.base.evolution.alignment:beast.pkgmgmt:beast.base.core:beast.base.inference:beast.base.evolution.tree.coalescent:beast.pkgmgmt:beast.base.core:beast.base.inference.util:beast.evolution.nuc:beast.base.evolution.operator:beast.base.inference.operator:beast.base.evolution.sitemodel:beast.base.evolution.substitutionmodel:beast.base.evolution.likelihood" required="BEAST.base v2.7.8:MultiTypeTree v8.2.0" version="2.7">
 
     <data
 id="h3n2_2deme"
@@ -111,8 +111,8 @@ name="alignment">
             <parameter id="gammaShape.s:h3n2_2deme" spec="parameter.RealParameter" name="stateNode">1.0</parameter>
             <parameter id="kappa.s:h3n2_2deme" spec="parameter.RealParameter" lower="0.0" name="stateNode">2.0</parameter>
             <parameter id="freqParameter.s:h3n2_2deme" spec="parameter.RealParameter" dimension="4" lower="0.0" name="stateNode" upper="1.0">0.25</parameter>
-            <parameter id="rateMatrix.t:h3n2_2deme" spec="parameter.RealParameter" dimension="2" name="stateNode">1.0 1.0</parameter>
             <parameter id="popSizes.t:h3n2_2deme" spec="parameter.RealParameter" dimension="2" name="stateNode">1.0 1.0</parameter>
+            <parameter id="rateMatrix.t:h3n2_2deme" spec="parameter.RealParameter" dimension="2" name="stateNode">1.0 1.0</parameter>
         </state>
         <distribution id="posterior" spec="CompoundDistribution">
             <distribution id="prior" spec="CompoundDistribution">
@@ -200,8 +200,8 @@ name="alignment">
                 <parameter idref="freqParameter.s:h3n2_2deme"/>
             </operator>
         </operator>
-        <operator id="rateMatrixScaler.t:h3n2_2deme" spec="ScaleOperator" parameter="@rateMatrix.t:h3n2_2deme" scaleFactor="0.8" weight="1.0"/>
         <operator id="popSizesScaler.t:h3n2_2deme" spec="ScaleOperator" parameter="@popSizes.t:h3n2_2deme" scaleFactor="0.8" weight="1.0"/>
+        <operator id="rateMatrixScaler.t:h3n2_2deme" spec="ScaleOperator" parameter="@rateMatrix.t:h3n2_2deme" scaleFactor="0.8" weight="1.0"/>
         <logger id="tracelog" spec="Logger" fileName="$(filebase).log" logEvery="1000">
             <log idref="posterior"/>
             <log idref="likelihood"/>
